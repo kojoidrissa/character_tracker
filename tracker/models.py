@@ -3,12 +3,13 @@ from django.db import models
 
 class Character(models.Model):
     pass
-    # FK to PLAYER  
+    # FK to PLAYER
     # Org Play Number Suffix
     # Starting Gold
     # XP (default to 0)
     # Faction Points (later; how to deal with faction changes?)
     # Do I want to track starting gear?
+
 
 class Scenario(models.Model):
     pass
@@ -25,6 +26,7 @@ class Scenario(models.Model):
     # XP Earned
     # Faction Points (Does this need to be a dict with choices?)
     # Notes (various textual data you want to store)
+
 
 class Transaction(models.Model):
     pass
