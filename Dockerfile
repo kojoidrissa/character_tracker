@@ -7,22 +7,25 @@ ENV PYTHONUNBUFFERED 1
 # Set work directory
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies and uv
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
-    && rm -rf /var/lib/apt/lists/*
+    curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -LsSf https://github.com/astral-sh/uv/releases/latest/download/uv-linux-x64 -o /usr/local/bin/uv \
+    && chmod +x /usr/local/bin/uv
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy project
+# Copy project files
+COPY pyproject.toml .
 COPY . .
+
+# Install dependencies using uv
+RUN uv pip install --system .
 
 # Run migrations and collect static files
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
-# Run the application
+# Run the application; I'll want gunicorn or something different for prod
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
