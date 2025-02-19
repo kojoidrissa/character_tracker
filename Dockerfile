@@ -11,10 +11,8 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
-    curl \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -LsSf https://github.com/astral-sh/uv/releases/latest/download/uv-linux-x64 -o /usr/local/bin/uv \
-    && chmod +x /usr/local/bin/uv
+    && pip install uv
 
 # Copy project files
 COPY pyproject.toml .
