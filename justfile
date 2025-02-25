@@ -5,7 +5,7 @@
     uv run python manage.py makemigrations
 
 @rebuild:
-    docker compose rm --force web utility
+    docker compose rm --force web
     docker compose build --force-rm
 
 @build:

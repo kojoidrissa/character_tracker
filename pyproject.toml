@@ -9,3 +9,6 @@ dependencies = [
     "just>=0.8.162",
     "psycopg-binary>=3.2.4",
 ]
+
+[tool.setuptools]
+packages = ["config", "tracker"]
