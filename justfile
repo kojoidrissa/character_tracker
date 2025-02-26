@@ -1,8 +1,8 @@
 @migrate:
-    uv run python manage.py migrate --noinput
+    docker compose run --rm python manage.py migrate --noinput
 
 @makemigrate:
-    uv run python manage.py makemigrations
+    docker compose run --rm python manage.py makemigrations
 
 @rebuild:
     docker compose rm --force web
