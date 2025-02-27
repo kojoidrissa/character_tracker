@@ -1,6 +1,10 @@
-compose := "docker compose run --rm --no-deps web"
+compose := "docker compose run --rm --no-deps utility"
 manage := compose + " python manage.py"
 
+@_default:
+    just --list
+
+# Runs migrations
 @migrate:
     docker compose run --rm python manage.py migrate --noinput
 
