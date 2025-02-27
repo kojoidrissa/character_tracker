@@ -17,3 +17,9 @@ db.sqlite3-journal
 
 # MacOS
 .DS_*
+
+# Django
+deployed_static/
+
+# Personal
+kojo/
