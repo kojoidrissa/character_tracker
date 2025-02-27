@@ -1,3 +1,6 @@
+compose := "docker compose run --rm --no-deps web"
+manage := compose + " python manage.py"
+
 @migrate:
     docker compose run --rm python manage.py migrate --noinput
 
@@ -16,3 +19,6 @@
 
 @up *ARGS:
     docker compose up {{ ARGS }}
+
+@run +ARGS="--help":
+    {{ manage }} {{ ARGS }}
