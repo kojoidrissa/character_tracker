@@ -6,5 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "django>=5.1.6",
-    "just>=0.8.162",
+    "psycopg2-binary",
 ]
+
+[tool.setuptools]
+packages = ["config", "tracker"]
