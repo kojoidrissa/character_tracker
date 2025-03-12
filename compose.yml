@@ -1,0 +1,50 @@
+services:
+  web:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=config.settings
+    depends_on:
+      db:
+        condition: service_healthy
+    command: "/code/compose-start.sh"
+
+  utility:
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+    # env_file: .env
+    init: true
+    volumes:
+      - .:/code
+    working_dir: /code
+
+  db:
+    image: postgres:17
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready",
+          "--host=db",
+          "--username=postgres"
+        ]
+      interval: 2s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=characters
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    user: postgres
+
+volumes:
+  postgres_data:
