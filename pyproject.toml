@@ -10,4 +10,4 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["config", "tracker"]
+packages = ["config", "tracker", "users"]

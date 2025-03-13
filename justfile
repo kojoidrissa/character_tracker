@@ -6,10 +6,10 @@ manage := compose + " python manage.py"
 
 # Runs migrations
 @migrate:
-    docker compose run --rm python manage.py migrate --noinput
+    docker compose run --rm web python manage.py migrate --noinput
 
-@makemigrate:
-    docker compose run --rm python manage.py makemigrations
+@makemigrations:
+    docker compose run --rm web python manage.py makemigrations
 
 @rebuild:
     docker compose rm --force web
@@ -24,5 +24,12 @@ manage := compose + " python manage.py"
 @up *ARGS:
     docker compose up {{ ARGS }}
 
+[doc("Runs `python manage.py` inside the container")]
 @run +ARGS="--help":
     {{ manage }} {{ ARGS }}
+
+# uv --quiet tool run --with pre-commit-uv pre-commit autoupdate
+
+# Run pre-commit hooks on all files in the repository
+# @lint:
+#     uv --quiet tool run --with pre-commit-uv pre-commit run --all-files
