@@ -1,17 +1,37 @@
 from django.db import models
 
+from users.models import User
+
 
 class Character(models.Model):
-    pass
-    # FK to PLAYER
-    # Org Play Number Suffix
-    # Starting Gold
-    # XP (default to 0)
+    """
+    Details for a specific PFS/SFS Character
+    """
+
+    player = models.ForeignKey(
+        User, on_delete=models.CASCADE, help_text="Who is playing this character?"
+    )
+    name = models.CharField(
+        max_length=255, help_text="What's the name of this character?"
+    )
+    org_play_suffix = models.IntegerField(
+        default=2001, help_text="What's the unique identifier for this character?"
+    )
+    gold = models.IntegerField(default=0)
+    experience = models.IntegerField(default=0)
+    # ToDo: create a calculated "Level" attribute: experience/12
+    profile = models.TextField(
+        blank=True, help_text="Include character description, background and notes here"
+    )
     # Faction Points (later; how to deal with faction changes?)
     # Do I want to track starting gear?
 
 
 class Scenario(models.Model):
+    """
+    What Org Play scenarios have been played
+    """
+
     pass
     # character = models.ForeignKey(
     #     Character,
@@ -29,6 +49,10 @@ class Scenario(models.Model):
 
 
 class Transaction(models.Model):
+    """
+    Keep track of items/gear a character purchases or sells
+    """
+
     pass
     # FK to CHARACTER
     # Gold (plus/minus)
