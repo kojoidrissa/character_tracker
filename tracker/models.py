@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import UniqueConstraint
 
 from users.models import User
 
@@ -14,7 +15,7 @@ class Character(models.Model):
     name = models.CharField(
         max_length=255, help_text="What's the name of this character?"
     )
-    org_play_suffix = models.IntegerField(
+    character_number = models.IntegerField(
         default=2001, help_text="What's the unique identifier for this character?"
     )
     gold = models.IntegerField(default=0)
@@ -25,6 +26,15 @@ class Character(models.Model):
     )
     # Faction Points (later; how to deal with faction changes?)
     # Do I want to track starting gear?
+
+    # make sure no player uses the same character number twice
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["player", "character_number"],
+                name="unique_player_character_number",
+            )
+        ]
 
 
 class Scenario(models.Model):
