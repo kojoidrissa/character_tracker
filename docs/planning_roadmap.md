@@ -13,7 +13,7 @@ I'll probably build multiple versions. This is a tentative order, but Vanilla Dj
 - Try it again at ChupacabraCon
 - Refine b/w each use
 
-### Models
+### Models (from an email I sent myself; Superseded by Issue 5)
 PLAYER (User)
 - Email
 - Org Play Number
