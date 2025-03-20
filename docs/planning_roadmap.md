@@ -33,7 +33,7 @@ SCENARIO (mostly chronicle sheet data; look at a chronicle sheet)
 - Other URL (PF or SF wiki)
 - Gold Earned
 - XP Earned
-- Faction Points (Does this need to be a duct with choices?)
+- Faction Points (Does this need to be a dict with choices?)
 - Notes (various textual data you want to store)
 
 TRANSACTION (stuff you buy/sell/craft?)
@@ -44,11 +44,13 @@ TRANSACTION (stuff you buy/sell/craft?)
 
 ### FORMS
 - Add Player
+    - no, this should just be "login/sign-up"; Players are Users
+    - I'll be the only one for awhile, but I should setup a login page that's NOT the Admin. Like a REAL web app.
 - Add Character
 - Add Scenario
 - Add Transaction
 
 
 ### PAGES
-- Display Character
+- Display a Character
 - Display list of Player’s Characters
