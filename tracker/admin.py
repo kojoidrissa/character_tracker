@@ -10,4 +10,4 @@ class CharacterAdmin(admin.ModelAdmin):
 
 @admin.register(Scenario)
 class ScenarioAdmin(admin.ModelAdmin):
-    list_display = ["number", "name"]
+    list_display = ["number", "name", "character"]
