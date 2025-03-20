@@ -10,4 +10,13 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["config", "tracker"]
+packages = ["config", "tracker", "users"]
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "*/migrations/*",  # This excludes all migrations folders
+]
