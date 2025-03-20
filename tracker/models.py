@@ -101,8 +101,19 @@ class Scenario(models.Model):
         null=True,
         help_text="various textual data you want to store; now for results for Recall Knowledge checks. MOVE TO JOURNAL",
     )
-    # Faction Points (Does this need to be a dict with choices?)
+    # Faction Points (Does this need to be a dict with choices?): Also it should be on the Chronicle model
     # ToDo for later: Replayed with a boon; how can I override the UniqueConstraint in that case?
+
+    # make sure no character plays the same scenario twice
+    # Is there a boon to allow that? Or is that boon only to let players replay non-replayable scenarios
+    # Paizo's site is down now, I'll have to look later
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["character", "number"],
+                name="unique_character_number",
+            )
+        ]
 
     def __str__(self):
         return f"{self.number}: {self.name}; "
