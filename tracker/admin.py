@@ -5,7 +5,7 @@ from .models import Character, Scenario
 
 @admin.register(Character)
 class CharacterAdmin(admin.ModelAdmin):
-    list_display = ["name", "character_number"]
+    list_display = ["name", "character_number", "player"]
 
 
 @admin.register(Scenario)
